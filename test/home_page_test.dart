@@ -7,23 +7,29 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_tests/first_screen.dart';
 
 import 'package:flutter_tests/main.dart';
+import 'package:flutter_tests/routes.dart';
 
 import 'test_material_app.dart';
+import 'test_navigator_observer.dart';
 
 void main() {
 
   HomePage homePage;
+  TestNavigatorObserver _navObserver;
 
   Widget _homeWidget() {
     return TestMaterialAppWidget(
       home: homePage,
+      navigatorObserver: _navObserver,
     );
   }
 
   setUp(() {
     homePage = HomePage(title: "Test Home page");
+    _navObserver = TestNavigatorObserver();
   });
 
   testWidgets("HomePage loaded", (WidgetTester tester) async {
@@ -44,6 +50,20 @@ void main() {
 
     //  then
     expect(find.byType(HomePage), findsOneWidget);
+  });
+
+  testWidgets('Navigate to Another screen', (WidgetTester tester) async {
+    //  given
+    var isPushed = false;
+    await tester.pumpWidget(_homeWidget());
+    _navObserver.attachPushRouteObserver(
+        Routes.ANOTHER_SCREEN_ROUTE, () { isPushed = true; });
+
+    //  when
+    await tester.tap(find.byType(RaisedButton));
+
+    //  then
+    expect(isPushed, true);
   });
 }
 

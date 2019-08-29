@@ -8,7 +8,7 @@ class AnotherPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Text('First screen')
+        child: Text('Another page')
       ),
     );
   }
