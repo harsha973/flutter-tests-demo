@@ -26,7 +26,10 @@ class HomePage extends StatelessWidget {
         child: RaisedButton(
           child: Text('Next screen'),
           onPressed: () {
-            Navigator.of(context).pushNamed(Routes.ANOTHER_SCREEN_ROUTE);
+            Navigator.of(context).pushNamed(
+              Routes.ANOTHER_SCREEN_ROUTE,
+              arguments: 'You got a package, please collect.'
+            );
           },
         ),
       ),

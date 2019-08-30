@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tests/first_screen.dart';
+import 'package:flutter_tests/another_page.dart';
 import 'package:flutter_tests/main.dart';
 
 class Routes {

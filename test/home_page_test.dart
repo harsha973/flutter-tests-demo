@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_tests/first_screen.dart';
+import 'package:flutter_tests/another_page.dart';
 
 import 'package:flutter_tests/main.dart';
 import 'package:flutter_tests/routes.dart';
@@ -64,6 +64,22 @@ void main() {
 
     //  then
     expect(isPushed, true);
+  });
+
+  testWidgets('Navigate to Another screen with arguments', (WidgetTester tester) async {
+    //  given
+    var actualArgs;
+    await tester.pumpWidget(_homeWidget());
+    _navObserver.attachPushRouteObserverWithArgs(
+        Routes.ANOTHER_SCREEN_ROUTE, (args) {
+          actualArgs = args; return;
+        });
+
+    //  when
+    await tester.tap(find.byType(RaisedButton));
+
+    //  then
+    expect(actualArgs, 'You got a package, please collect.');
   });
 }
 

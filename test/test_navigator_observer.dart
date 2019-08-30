@@ -23,4 +23,15 @@ class TestNavigatorObserver extends NavigatorObserver {
       if(isExpectedRoutePushed) { pushCallback(); }
     };
   }
+
+  attachPushRouteObserverWithArgs(
+      String expectedRouteName,
+      VoidCallback pushCallback(Object args)
+    ) {
+    onPushed = (route, previousRoute) {
+      final isExpectedRoutePushed = route.settings.name == expectedRouteName;
+      // trigger callback if expected route is pushed
+      if(isExpectedRoutePushed) { pushCallback(route.settings.arguments); }
+    };
+  }
 }
