@@ -2,12 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tests/routes.dart';
 
+import 'test_navigator_observer.dart';
+
 class TestMaterialAppWidget extends StatelessWidget {
   final Widget home;
+  final NavigatorObserver navigatorObserver;
 
   TestMaterialAppWidget({
     Key key,
     this.home,
+    this.navigatorObserver
   });
 
   @override
@@ -15,11 +19,12 @@ class TestMaterialAppWidget extends StatelessWidget {
     return MaterialApp(
       title: 'Widget Test',
       home: home,
-      routes: _routes(),
+      navigatorObservers: [navigatorObserver ?? TestNavigatorObserver()],
+      routes: _testRoutes(),
     );
   }
 
-  Map<String, WidgetBuilder> _routes() {
+  Map<String, WidgetBuilder> _testRoutes() {
     return <String, WidgetBuilder>{
       Routes.ANOTHER_SCREEN_ROUTE: (context) => _testRoute(Routes.ANOTHER_SCREEN_ROUTE),
     };
