@@ -13,13 +13,22 @@ class AnotherPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Hello, Another page'),
-            SizedBox(height: 16,),
+            _padding16(),
             if(messageFromPreviousPage != null)
-              Text(messageFromPreviousPage)
+              Text(messageFromPreviousPage),
+            _padding16(),
+            RaisedButton(
+              child: Text('Take me back'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
           ],
         )
       ),
     );
   }
+
+  SizedBox _padding16() => SizedBox(height: 16);
 
 }

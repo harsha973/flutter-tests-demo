@@ -5,9 +5,21 @@ typedef OnObservation = void Function(Route<dynamic> route, Route<dynamic> previ
 class TestNavigatorObserver extends NavigatorObserver {
   OnObservation onPushed;
   OnObservation onPopped;
-  OnObservation onRemoved;
-  OnObservation onReplaced;
-  OnObservation onStartUserGesture;
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic> previousRoute) {
+    if (onPopped != null) {
+      onPopped(route, previousRoute);
+    }
+  }
+
+  attachPopRouteObserver(String expectedRouteName, Function poppedCallback) {
+    onPopped = (route, previousRoute) {
+      final isExpectedRoutePopped = route.settings.name == expectedRouteName;
+      // trigger callback if expected route is popped
+      if(isExpectedRoutePopped) { poppedCallback(); }
+    };
+  }
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic> previousRoute) {

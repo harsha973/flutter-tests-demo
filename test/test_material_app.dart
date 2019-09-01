@@ -7,11 +7,13 @@ import 'test_navigator_observer.dart';
 class TestMaterialAppWidget extends StatelessWidget {
   final Widget home;
   final NavigatorObserver navigatorObserver;
+  final Map<String, WidgetBuilder> routes;
 
   TestMaterialAppWidget({
     Key key,
     this.home,
-    this.navigatorObserver
+    this.navigatorObserver,
+    this.routes
   });
 
   @override
@@ -20,7 +22,7 @@ class TestMaterialAppWidget extends StatelessWidget {
       title: 'Widget Test',
       home: home,
       navigatorObservers: [navigatorObserver ?? TestNavigatorObserver()],
-      routes: _testRoutes(),
+      routes: routes ?? _testRoutes(),
     );
   }
 
