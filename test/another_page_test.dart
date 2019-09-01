@@ -33,13 +33,24 @@ void main() {
     await _pumpAnotherPage(tester);
     var isPopped = false;
     _navObserver.attachPopRouteObserver(
-        Routes.ANOTHER_SCREEN_ROUTE, () { isPopped = true; });
+        Routes.ANOTHER_SCREEN_ROUTE, () { isPopped = true; return; });
 
     //  when
     await tester.tap(find.text('Take me back'));
 
     //  then
     expect(isPopped, isTrue);
+  });
+
+  testWidgets("AnotherPage pop with 'Success' Result", (WidgetTester tester) async {
+    //  given
+    await _pumpAnotherPage(tester);
+
+    //  when
+    await tester.tap(find.text('Take me back'));
+
+    //  then
+    expect(_result, 'Success');
   });
 
 }
@@ -50,9 +61,11 @@ Map<String, WidgetBuilder> _routes() {
   };
 }
 
+var  _result;
 class TestHomePage extends StatelessWidget {
+
   @override
-  Widget build(BuildContext context) => RaisedButton(onPressed: () {
-      Navigator.pushNamed(context, Routes.ANOTHER_SCREEN_ROUTE);
-    });
+  Widget build(BuildContext context) => RaisedButton(onPressed: () async {
+     _result = await Navigator.pushNamed(context, Routes.ANOTHER_SCREEN_ROUTE);
+  });
 }

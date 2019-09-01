@@ -13,7 +13,7 @@ class TestNavigatorObserver extends NavigatorObserver {
     }
   }
 
-  attachPopRouteObserver(String expectedRouteName, Function poppedCallback) {
+  attachPopRouteObserver(String expectedRouteName, Function poppedCallback()) {
     onPopped = (route, previousRoute) {
       final isExpectedRoutePopped = route.settings.name == expectedRouteName;
       // trigger callback if expected route is popped

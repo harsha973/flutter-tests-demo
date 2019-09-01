@@ -26,13 +26,18 @@ class HomePage extends StatelessWidget {
         child: RaisedButton(
           child: Text('Next screen'),
           onPressed: () {
-            Navigator.of(context).pushNamed(
-              Routes.ANOTHER_SCREEN_ROUTE,
-              arguments: 'You got a package, please collect.'
-            );
+            _onTapped(context);
           },
         ),
       ),
     );
+  }
+
+  Future _onTapped(BuildContext context) async {
+    final result = await Navigator.of(context).pushNamed(
+      Routes.ANOTHER_SCREEN_ROUTE,
+      arguments: 'You got a package, please collect.'
+    );
+    print('Result is : $result');
   }
 }
