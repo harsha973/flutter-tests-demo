@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tests/app_colors.dart';
+import 'package:flutter_tests/app_raised_button.dart';
 import 'package:flutter_tests/routes.dart';
 
 void main() => runApp(MyApp());
@@ -8,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Testing App',
-      theme: ThemeData(primarySwatch: Colors.blue,),
+      theme: ThemeData(primarySwatch: AppColors.primary,),
       routes: Routes.routes(),
     );
   }
@@ -23,8 +25,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(title),),
       body: Center(
-        child: RaisedButton(
-          child: Text('Next screen'),
+        child: AppRaisedButton(
+          title: 'Next screen',
           onPressed: () {
             _onTapped(context);
           },
