@@ -21,12 +21,13 @@ class AppRaisedButton extends StatelessWidget {
         this.title = title,
         this.shapeBorder = shapeBorder,
         this.padding = padding,
-        super(key: key);
+        super(key: key ?? Key('AppRaisedButtonKey'));
 
   @override
   Widget build(BuildContext context) {
     return RaisedButton (
         child: Padding(
+          key: Key('CustomPaddingKey'),
           padding: _buildEdgeInsets(),
           child: Text(title),
         ),

@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tests/another_page.dart';
+import 'package:flutter_tests/app_raised_button.dart';
 
 import 'package:flutter_tests/main.dart';
 import 'package:flutter_tests/routes.dart';
@@ -52,6 +53,17 @@ void main() {
     expect(find.byType(HomePage), findsOneWidget);
   });
 
+  testWidgets('AppRaisedButton has proper title', (WidgetTester tester) async {
+    //  given
+    await tester.pumpWidget(_homeWidget());
+
+    //  when
+    final button = tester.widget<AppRaisedButton>(find.byType(AppRaisedButton));
+
+    //  then
+    expect(button.title, 'Next screen');
+  });
+
   testWidgets('Navigate to Another screen', (WidgetTester tester) async {
     //  given
     var isPushed = false;
@@ -60,7 +72,7 @@ void main() {
         Routes.ANOTHER_SCREEN_ROUTE, () { isPushed = true; });
 
     //  when
-    await tester.tap(find.byType(RaisedButton));
+    await tester.tap(find.byType(AppRaisedButton));
 
     //  then
     expect(isPushed, true);
@@ -76,7 +88,7 @@ void main() {
         });
 
     //  when
-    await tester.tap(find.byType(RaisedButton));
+    await tester.tap(find.byType(AppRaisedButton));
 
     //  then
     expect(actualArgs, 'You got a package, please collect.');
