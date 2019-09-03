@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tests/routes.dart';
+import 'package:flutter_tests/ui/others/routes.dart';
 
 import 'test_navigator_observer.dart';
 

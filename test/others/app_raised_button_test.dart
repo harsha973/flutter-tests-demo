@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_test/flutter_test.dart' as prefix0;
-import 'package:flutter_tests/app_colors.dart';
-import 'package:flutter_tests/app_raised_button.dart';
-import 'package:flutter_tests/dimens.dart';
+import 'package:flutter_tests/ui/others/app_colors.dart';
+import 'package:flutter_tests/ui/others/app_raised_button.dart';
+import 'package:flutter_tests/ui/others/dimens.dart';
 
-import 'test_material_app.dart';
+import '../test_material_app.dart';
 
 void main() {
 

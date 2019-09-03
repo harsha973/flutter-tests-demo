@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tests/another_page.dart';
-import 'package:flutter_tests/main.dart';
+import 'package:flutter_tests/ui/routes/another_page.dart';
+import 'package:flutter_tests/ui/routes/home_page.dart';
 
 class Routes {
   static const HOME_SCREEN_ROUTE = '/';

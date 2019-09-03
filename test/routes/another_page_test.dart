@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_tests/another_page.dart';
-import 'package:flutter_tests/routes.dart';
+import 'package:flutter_tests/ui/others/routes.dart';
+import 'package:flutter_tests/ui/routes/another_page.dart';
 
-import 'test_material_app.dart';
-import 'test_navigator_observer.dart';
+import '../test_material_app.dart';
+import '../test_navigator_observer.dart';
 
 void main() {
   TestNavigatorObserver _navObserver;
