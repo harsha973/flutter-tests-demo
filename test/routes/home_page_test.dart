@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_tests/ui/others/routes.dart';
 import 'package:flutter_tests/ui/others/app_raised_button.dart';
-import 'package:flutter_tests/ui/routes/home_page.dart';
+import 'package:flutter_tests/ui/home/home_page.dart';
 import '../test_material_app.dart';
 import '../test_navigator_observer.dart';
 
