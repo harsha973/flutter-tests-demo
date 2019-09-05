@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tests/ui/others/dimens.dart';
 import 'package:flutter_tests/ui/others/widgets/expanded_header_widget.dart';
 import 'package:flutter_tests/ui/others/widgets/expanding_section_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ExpandedCollapsedPage extends StatefulWidget {
 
@@ -14,6 +15,19 @@ class _ExpandedCollapsedPageState extends State<ExpandedCollapsedPage> {
   var _expanded = false;
 
   @override
+  void initState() {
+    super.initState();
+    _initExandedState();
+  }
+
+  _initExandedState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _expanded = prefs.getBool(expandedKey) ?? false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Expanded Collapsed Page')),
@@ -23,7 +37,10 @@ class _ExpandedCollapsedPageState extends State<ExpandedCollapsedPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             ExpandedHeaderWidget(
-                onTapped: () { setState(() { _expanded = !_expanded; }); }
+                onTapped: () { setState(() {
+                  _expanded = !_expanded;
+                  _saveExpandedStateInSharedPrefs(_expanded);
+                }); }
             ),
             ExpandingSectionWidget(
               expand: _expanded,
@@ -52,5 +69,11 @@ class _ExpandedCollapsedPageState extends State<ExpandedCollapsedPage> {
         ),
       ),
     );
+  }
+
+  final expandedKey = 'expandedKey';
+  void _saveExpandedStateInSharedPrefs(bool expanded) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(expandedKey, expanded);
   }
 }
