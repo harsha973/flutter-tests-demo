@@ -50,17 +50,6 @@ void main() {
     expect(find.byType(HomePage), findsOneWidget);
   });
 
-  testWidgets('AppRaisedButton has proper title', (WidgetTester tester) async {
-    //  given
-    await tester.pumpWidget(_homeWidget());
-
-    //  when
-    final button = tester.widget<AppRaisedButton>(find.byType(AppRaisedButton));
-
-    //  then
-    expect(button.title, 'Next screen');
-  });
-
   testWidgets('Navigate to Another screen', (WidgetTester tester) async {
     //  given
     var isPushed = false;
@@ -69,7 +58,7 @@ void main() {
         Routes.ANOTHER_SCREEN_ROUTE, () { isPushed = true; });
 
     //  when
-    await tester.tap(find.byType(AppRaisedButton));
+    await tester.tap(find.text('Another screen'));
 
     //  then
     expect(isPushed, true);
@@ -85,10 +74,48 @@ void main() {
         });
 
     //  when
-    await tester.tap(find.byType(AppRaisedButton));
+    await tester.tap(find.text('Another screen'));
 
     //  then
     expect(actualArgs, 'You got a package, please collect.');
+  });
+
+  testWidgets('Navigate to Expanding/Collapsing screen', (WidgetTester tester) async {
+    //  given
+    var isPushed = false;
+    await tester.pumpWidget(_homeWidget());
+    _navObserver.attachPushRouteObserver(
+        Routes.EXPANDED_COLLAPSED_ROUTE, () { isPushed = true; });
+
+    //  when
+    await tester.tap(find.text('Expanded/collapse view'));
+
+    //  then
+    expect(isPushed, true);
+  });
+
+  group('List items', () {
+
+    testWidgets('Another screen list item is visible', (WidgetTester tester) async {
+      //  given
+
+      //  when
+      await tester.pumpWidget(_homeWidget());
+
+      //  then
+      expect(find.text('Another screen'), findsOneWidget);
+    });
+
+    testWidgets('Expanded/collapsed list item is visible', (WidgetTester tester) async {
+      //  given
+
+      //  when
+      await tester.pumpWidget(_homeWidget());
+
+      //  then
+      expect(find.text('Expanded/collapse view'), findsOneWidget);
+    });
+
   });
 }
 

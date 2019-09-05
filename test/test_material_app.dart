@@ -29,6 +29,7 @@ class TestMaterialAppWidget extends StatelessWidget {
   Map<String, WidgetBuilder> _testRoutes() {
     return <String, WidgetBuilder>{
       Routes.ANOTHER_SCREEN_ROUTE: (context) => _testRoute(Routes.ANOTHER_SCREEN_ROUTE),
+      Routes.EXPANDED_COLLAPSED_ROUTE: (context) => _testRoute(Routes.EXPANDED_COLLAPSED_ROUTE),
     };
   }
 
