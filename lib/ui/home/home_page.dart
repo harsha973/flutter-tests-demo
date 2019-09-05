@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tests/ui/home/home_page_list_item.dart';
 import 'package:flutter_tests/ui/home/home_ui_model.dart';
-import 'package:flutter_tests/ui/others/app_raised_button.dart';
-import 'package:flutter_tests/ui/others/routes.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key, @required this.title}) : super(key: key);
