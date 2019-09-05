@@ -9,13 +9,13 @@ import '../mock_animation_utils.dart';
 void main() {
 
   Widget _expandedSection({
-    Widget child,
+    Widget expandedWidget,
     bool expand
   }) {
     return TestMaterialAppWidget(
       home: ExpandingSectionWidget(
         expand: expand,
-        child: child,
+        child: expandedWidget,
         animationUtils: MockAnimationUtils(),
       )
     );
@@ -24,7 +24,7 @@ void main() {
   testWidgets('Expanded state', (WidgetTester tester) async {
     // Given
     await tester.pumpWidget(_expandedSection(
-      child: Text('ABC'),
+      expandedWidget: Text('ABC'),
       expand: true,
     ));
 
@@ -38,7 +38,7 @@ void main() {
   testWidgets('Collapsed state', (WidgetTester tester) async {
     // Given
     await tester.pumpWidget(_expandedSection(
-      child: Text('ABC'),
+      expandedWidget: Text('ABC'),
       expand: false,
     ));
 
