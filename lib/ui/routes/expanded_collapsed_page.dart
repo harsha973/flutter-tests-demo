@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tests/ui/others/dimens.dart';
 import 'package:flutter_tests/ui/others/widgets/expanded_header_widget.dart';
-import 'package:flutter_tests/ui/others/widgets/expanded_section_widget.dart';
+import 'package:flutter_tests/ui/others/widgets/expanding_section_widget.dart';
 
 class ExpandedCollapsedPage extends StatefulWidget {
 

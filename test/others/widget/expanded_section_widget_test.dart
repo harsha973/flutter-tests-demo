@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_tests/ui/others/widgets/expanded_section_widget.dart';
+import 'package:flutter_tests/ui/others/widgets/expanding_section_widget.dart';
 
 import '../../test_material_app.dart';
 import '../mock_animation_utils.dart';
