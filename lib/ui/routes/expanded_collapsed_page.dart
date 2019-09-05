@@ -6,6 +6,9 @@ import 'package:flutter_tests/ui/others/widgets/expanding_section_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ExpandedCollapsedPage extends StatefulWidget {
+  final SharedPreferences sharedPreferences;
+
+  ExpandedCollapsedPage({this.sharedPreferences});
 
   @override
   _ExpandedCollapsedPageState createState() => _ExpandedCollapsedPageState();
@@ -13,18 +16,23 @@ class ExpandedCollapsedPage extends StatefulWidget {
 
 class _ExpandedCollapsedPageState extends State<ExpandedCollapsedPage> {
   var _expanded = false;
+  final expandedPrefsKey = 'expandedKey';
 
   @override
   void initState() {
     super.initState();
-    _initExandedState();
+    _initExpandedState();
   }
 
-  _initExandedState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  _initExpandedState() async {
+    SharedPreferences prefs = await _getSharedPref();
     setState(() {
-      _expanded = prefs.getBool(expandedKey) ?? false;
+      _expanded = prefs.getBool(expandedPrefsKey) ?? false;
     });
+  }
+
+  Future<SharedPreferences> _getSharedPref() async {
+    return widget.sharedPreferences ?? await SharedPreferences.getInstance();
   }
 
   @override
@@ -71,9 +79,8 @@ class _ExpandedCollapsedPageState extends State<ExpandedCollapsedPage> {
     );
   }
 
-  final expandedKey = 'expandedKey';
   void _saveExpandedStateInSharedPrefs(bool expanded) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(expandedKey, expanded);
+    await prefs.setBool(expandedPrefsKey, expanded);
   }
 }
